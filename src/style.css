@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("../imgs/light-mode.png");
+  transition: 0.4s;
+}
+
+.dark-theme {
+  background-image: url("../imgs/dark-mode.png");
+  color: white;
+  transition: 0.4s;
+}
+
+.img {
+  height: 80px;
+  margin-left: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.volume {
+  height: 60px;
+}
+
+.loading-pokeball {
+  height: 80px;
+  float: left;
+}
+
+.sound {
+  display: flex;
+  height: 100px;
+}
+
+.container {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+form.form-container input[type="text"] {
+  font-size: 18px;
+  padding: 15px;
+  width: 400px;
+  border: none;
+  border-radius: 8px;
+}
+
+form.form-container button {
+  width: 100px;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #f54c4c;
+  color: white;
+}
