@@ -1,14 +1,15 @@
 // Load saved theme preference from local storage
 function loadWindow() {
   let bodyElement = document.querySelector("body");
+
   let savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.querySelector("body").classList.add("dark-theme");
   }
 
-  // enable transitions AFTER initial theme is applied
+  // Requests the browser to run this line of code after the page loads
   requestAnimationFrame(() => {
-    bodyElement.classList.add("theme-transition");
+    bodyElement.classList.add("theme-transition"); // callback function
   });
 }
 
