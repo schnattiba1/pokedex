@@ -5,6 +5,9 @@
 
 body {
   background-image: url("../imgs/light-mode.png");
+}
+
+body.theme-transition {
   transition: 0.4s;
 }
 

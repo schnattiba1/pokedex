@@ -1,10 +1,15 @@
 // Load saved theme preference from local storage
 function loadWindow() {
+  let bodyElement = document.querySelector("body");
   let savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.querySelector("body").classList.add("dark-theme");
-    document.body.classList.remove("preload");
   }
+
+  // enable transitions AFTER initial theme is applied
+  requestAnimationFrame(() => {
+    bodyElement.classList.add("theme-transition");
+  });
 }
 
 let openThemeSound = new Audio("../audios/pokemon-open-theme.mp3");
