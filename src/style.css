@@ -11,7 +11,6 @@ body {
 .dark-theme {
   background-image: url("../imgs/dark-mode.png");
   color: white;
-  transition: 0.4s;
 }
 
 .img {
@@ -53,7 +52,7 @@ form.form-container input[type="text"] {
 
 form.form-container button {
   width: 100px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
