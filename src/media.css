@@ -1,8 +1,4 @@
 @media (max-width: 900px) {
-  .img {
-    height: 50px;
-  }
-
   .prompt,
   .search-btn {
     width: 100%;
