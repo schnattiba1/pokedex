@@ -54,18 +54,6 @@ form {
   width: 600px;
 }
 
-/*.btn-search {
-  width: 20px;
-  height: 25px;
-  padding: 20px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  background-color: #f54c4c;
-  color: white;
-  margin-left: 5px;
-}*/
-
 .btn-search {
   padding: 12px 20px;
   background-color: #f54c4c;
@@ -73,23 +61,3 @@ form {
   border: none;
   border-radius: 5px;
 }
-
-/*.container input[type="text"] {
-  font-size: 18px;
-  padding: 15px;
-  width: 600px;
-  border: none;
-  border-radius: 8px;
-}
-
-.container button {
-  width: 52px;
-  height: 52px;
-  padding: 15px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  background-color: #f54c4c;
-  color: white;
-  margin-left: 5px;
-}*/
