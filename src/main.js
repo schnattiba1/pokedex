@@ -4,13 +4,23 @@ function loadWindow() {
 
   let savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
-    document.querySelector("body").classList.add("dark-theme");
+    bodyElement.classList.add("dark-theme");
   }
 
   // Requests the browser to run this line of code after the page loads
   requestAnimationFrame(() => {
-    bodyElement.classList.add("theme-transition"); // callback function
+    bodyElement.classList.add("theme-transition");
   });
+
+  // Checks for system preferences if no saved theme
+  let prefersDark = window.matchMedia(
+    "(background-image: url('../imgs/dark-mode.png'))",
+  ).matches;
+
+  // If dark mode exists, apply it immediately to the html element
+  if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+    bodyElement.classList.add("dark-theme");
+  }
 }
 
 let openThemeSound = new Audio("../audios/pokemon-open-theme.mp3");
