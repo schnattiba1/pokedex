@@ -1,8 +1,2 @@
 @media (max-width: 900px) {
-  .prompt,
-  .search-btn {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 5px;
-  }
 }
