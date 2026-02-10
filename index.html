@@ -26,15 +26,29 @@
       <img id="sound" class="img" src="./imgs/volume-mute.png" alt="volume" />
     </header>
 
-    <!--<img class="loading-pokeball" src="./imgs/pokeball-loading.gif" />-->
-
-    <div class="container">
+    <div class="form-container">
       <form>
         <input class="prompt" type="text" placeholder="Search for a Pokémon" />
         <button class="btn-search" type="submit" name="btn">
           <i class="fa fa-search"></i>
         </button>
       </form>
+    </div>
+
+    <!--<img class="loading-pokeball" src="./imgs/pokeball-loading.gif" />-->
+    <div class="select-pokemon-container">
+      <div class="select-pokemon">
+        <!--<img src="./imgs/pikachu-pixel.gif" alt="Pikachu pixel" />-->
+        <img
+          class="no-selected-pokemon"
+          src="./imgs/no-pokemon-selected-image.png"
+          alt="no-pokemon-selected"
+        />
+        <h3>
+          Select a Pokémon<br />
+          to display here
+        </h3>
+      </div>
     </div>
     <script src="./src/main.js"></script>
   </body>

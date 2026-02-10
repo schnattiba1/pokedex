@@ -4,8 +4,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "PokemonClassicFont";
+  src: url("../fonts/Pokemon\ Classic.ttf");
+}
+
 html {
   background-image: url("../imgs/light-mode.png");
+  font-family: "PokemonClassicFont";
 }
 
 html.dark-theme {
@@ -54,16 +60,38 @@ form {
 
 .prompt {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
   margin-right: 10px;
   width: 600px;
+  box-shadow: 0 3px 6px -6px #222;
 }
 
 .btn-search {
   padding: 12px 20px;
   background-color: #f54c4c;
+  filter: drop-shadow(0 0 1px #f54c4c); /* Makes the btn glow */
+  box-shadow: 0 3px 6px -6px #222;
   color: white;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.select-pokemon-container {
+  display: flex;
+  justify-content: flex-end; /* ⬅️ move to the RIGHT */
+  /*margin-top: 140px;*/
+  padding-right: 50px;
+}
+
+.no-selected-pokemon {
+  display: block;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.select-pokemon-container h3 {
+  font-size: 14px;
+  margin-top: 50px;
 }
