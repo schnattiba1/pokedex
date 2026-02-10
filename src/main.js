@@ -11,7 +11,7 @@ function displayTheme(event) {
   }
 }
 
-let openThemeSound = new Audio("../audios/pokemon-open-theme.mp3");
+let openThemeSound = new Audio("../audios/little-town.mp3");
 let toggle = true;
 function displaySound() {
   let volumeImg = document.querySelector("#sound");
