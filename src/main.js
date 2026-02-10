@@ -1,16 +1,14 @@
-// Load saved theme preference from local storage
-function loadWindow() {
-  let bodyElement = document.querySelector("body");
+function displayTheme(event) {
+  event.preventDefault();
 
-  let savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    bodyElement.classList.add("dark-theme");
+  const htmlElement = document.documentElement;
+  htmlElement.classList.toggle("dark-theme");
+
+  if (htmlElement.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
   }
-
-  // Requests the browser to run this line of code after the page loads
-  requestAnimationFrame(() => {
-    bodyElement.classList.add("theme-transition");
-  });
 }
 
 let openThemeSound = new Audio("../audios/pokemon-open-theme.mp3");
@@ -29,19 +27,6 @@ function displaySound() {
   }
 }
 
-function displayTheme(event) {
-  event.preventDefault();
-  let bodyElement = document.querySelector("body");
-  bodyElement.classList.toggle("dark-theme");
-
-  // Saving theme preference to local storage
-  if (bodyElement.classList.contains("dark-theme")) {
-    localStorage.setItem("theme", "dark");
-  } else {
-    localStorage.setItem("theme", "light");
-  }
-}
-
 // Dark theme preference
 let psyduck = document.querySelector("#psyduck");
 psyduck.addEventListener("click", displayTheme);
@@ -51,4 +36,6 @@ let sound = document.querySelector("#sound");
 sound.addEventListener("click", displaySound);
 
 // Reload eventListener
-window.addEventListener("load", loadWindow);
+window.addEventListener("load", () => {
+  document.documentElement.classList.add("theme-transition");
+});

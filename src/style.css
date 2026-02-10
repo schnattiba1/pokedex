@@ -4,17 +4,17 @@
   box-sizing: border-box;
 }
 
-body {
+html {
   background-image: url("../imgs/light-mode.png");
 }
 
-body.theme-transition {
-  transition: 0.4s;
-}
-
-.dark-theme {
+html.dark-theme {
   background-image: url("../imgs/dark-mode.png");
   color: white;
+}
+
+html.theme-transition {
+  transition: 0.4s;
 }
 
 .img {
