@@ -27,6 +27,7 @@ function displaySound() {
   }
 }
 
+// Pikachu sound effect
 function pikaPika(event) {
   event.preventDefault();
 
