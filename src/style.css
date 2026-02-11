@@ -23,7 +23,7 @@ html.theme-transition {
   transition: 0.4s;
 }
 
-.select-pokemon-dark {
+html.dark-theme .select-pokemon {
   background-color: #222;
   color: white;
 }
