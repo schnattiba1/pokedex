@@ -9,6 +9,11 @@ function displayTheme(event) {
   } else {
     localStorage.setItem("theme", "light");
   }
+
+  const selectPokemon = document.querySelector("#select-pokemon");
+  if (htmlElement.classList.contains("dark-mode")) {
+    selectPokemon.classList.add("select-pokemon-dark");
+  }
 }
 
 let openThemeSound = new Audio("../audios/little-town.mp3");

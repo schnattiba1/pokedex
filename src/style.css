@@ -23,6 +23,11 @@ html.theme-transition {
   transition: 0.4s;
 }
 
+.select-pokemon-dark {
+  background-color: #222;
+  color: white;
+}
+
 header {
   -webkit-box-shadow: 0 4px 6px -6px #222;
   -moz-box-shadow: 0 4px 6px -6px #222;
@@ -80,9 +85,10 @@ form {
 
 .select-pokemon-container {
   display: flex;
-  justify-content: flex-end; /* ⬅️ move to the RIGHT */
-  /*margin-top: 140px;*/
-  padding-right: 50px;
+  justify-content: flex-end;
+  padding-right: 120px;
+  border-radius: 8px;
+  height: 82vh;
 }
 
 .no-selected-pokemon {
@@ -93,5 +99,14 @@ form {
 
 .select-pokemon-container h3 {
   font-size: 14px;
-  margin-top: 50px;
+  margin-top: 150px;
+}
+
+.select-pokemon {
+  /*background-color: #222;*/
+  background-color: aliceblue;
+  color: black;
+  padding: 90px 90px 90px 90px;
+  height: 82vh;
+  border-radius: 8px;
 }
