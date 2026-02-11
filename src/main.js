@@ -27,6 +27,13 @@ function displaySound() {
   }
 }
 
+function pikaPika(event) {
+  event.preventDefault();
+
+  let pikachuSoundEffect = new Audio("../audios/pikachu-sound-effect.mp3");
+  pikachuSoundEffect.play();
+}
+
 // Dark theme preference
 let psyduck = document.querySelector("#psyduck");
 psyduck.addEventListener("click", displayTheme);
@@ -39,3 +46,6 @@ sound.addEventListener("click", displaySound);
 window.addEventListener("load", () => {
   document.documentElement.classList.add("theme-transition");
 });
+
+let pixelPikachu = document.querySelector("#pixel-pikachu");
+pixelPikachu.addEventListener("click", pikaPika);
