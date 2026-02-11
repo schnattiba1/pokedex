@@ -84,11 +84,15 @@ form {
 }
 
 .select-pokemon-container {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 120px;
-  border-radius: 8px;
+  position: fixed;
   height: 82vh;
+  width: 320px;
+  right: calc(-20px + 10vw);
+  text-align: center;
+  bottom: 0px;
+  margin: 10px 10px 0px;
+  padding: 0px 15px;
+  border-radius: 8px;
 }
 
 .no-selected-pokemon {
@@ -103,7 +107,6 @@ form {
 }
 
 .select-pokemon {
-  /*background-color: #222;*/
   background-color: aliceblue;
   color: black;
   padding: 90px 90px 90px 90px;
