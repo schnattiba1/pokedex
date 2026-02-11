@@ -31,7 +31,16 @@ function pikaPika(event) {
   event.preventDefault();
 
   let pikachuSoundEffect = new Audio("../audios/pikachu-sound-effect.mp3");
-  pikachuSoundEffect.play();
+
+  if (pikachuSoundEffect) {
+    pikachuSoundEffect.play();
+    isPlaying = true;
+
+    // Reset flag when audio finishes
+    pikachuSoundEffect.onended = function () {
+      isPlaying = false;
+    };
+  }
 }
 
 // Dark theme preference
