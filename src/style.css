@@ -23,7 +23,7 @@ html.theme-transition {
   transition: 0.4s;
 }
 
-html.dark-theme .select-pokemon {
+html.dark-theme .display-pokemon {
   background-color: #222;
   color: white;
 }
@@ -83,7 +83,7 @@ form {
   cursor: pointer;
 }
 
-.select-pokemon-container {
+.display-pokemon-container {
   position: fixed;
   height: 82vh;
   width: 320px;
@@ -101,12 +101,12 @@ form {
   margin: 0 auto;
 }
 
-.select-pokemon-container h3 {
+.display-pokemon-container h3 {
   font-size: 14px;
   margin-top: 150px;
 }
 
-.select-pokemon {
+.display-pokemon {
   background-color: aliceblue;
   color: black;
   padding: 90px 90px 90px 90px;
