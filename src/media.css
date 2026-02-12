@@ -2,4 +2,9 @@
   .display-pokemon-container {
     display: none;
   }
+
+  .main-content {
+    flex-direction: column;
+    padding: 0 20px;
+  }
 }
