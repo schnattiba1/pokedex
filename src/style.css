@@ -88,24 +88,23 @@ form {
   cursor: pointer;
 }
 
-.display-pokemon-container {
-  /*position: fixed;*/
-  float: right;
-  height: 82vh;
-  width: 320px;
-  /*right: calc(-20px + 10vw);*/
-  text-align: center;
-  bottom: 0px;
-  /*margin: 0px 10px 0px;*/
-  margin: 90px 90px 90px;
-  padding: 0px 15px;
-  border-radius: 8px;
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 80px;
+  margin-top: 60px;
 }
 
 .no-selected-pokemon {
   display: block;
   height: 150px;
   margin: 0 auto;
+  cursor: pointer;
+}
+
+.display-pokemon-container {
+  width: 320px;
 }
 
 .display-pokemon-container h3 {
@@ -123,11 +122,10 @@ form {
 
 .select-pokemon-card-container {
   display: flex;
-  margin: 0 auto;
-  justify-content: center;
   flex-wrap: wrap;
-  margin-top: 100px;
-  text-align: center;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
 }
 
 .select-pokemon-card {
@@ -138,6 +136,12 @@ form {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin: 20px;
   color: black;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.select-pokemon-card:hover {
+  transform: scale(1.1);
 }
 
 .select-pokemon-card img {
