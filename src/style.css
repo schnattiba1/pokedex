@@ -117,10 +117,13 @@ form {
 .display-pokemon-container h3 {
   font-size: 14px;
   margin-top: 150px;
+  font-size: 15px;
 }
 
 .display-pokemon {
-  background-color: aliceblue;
+  /*background-color: aliceblue;*/
+  /*background-color: #ffffff;*/
+  background-color: #f0f0f0;
   color: black;
   padding: 90px 90px 90px 90px;
   border-radius: 8px;
@@ -228,22 +231,25 @@ form {
   text-align: center;
 }
 
-.width-height-container {
+.height-and-weight {
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  gap: 50px;
+  margin-top: 40px;
 }
 
-.width-height-container h2 {
+.width {
+  text-align: center;
+}
+
+.height-and-weight h4 {
   font-size: 15px;
-  justify-content: space-around;
+  text-align: center;
 }
 
-.width-height-container p {
-  width: 100%;
-  background-color: #f4f4f4;
-  padding: 5px 5px;
+.height-width {
+  margin-top: 20px;
+  background-color: #b2b3be;
   border-radius: 8px;
-  font-size: 14px;
-  margin: 20px auto;
+  padding: 10px;
 }

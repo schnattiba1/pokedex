@@ -67,16 +67,20 @@ function displayPokemon() {
                 </span>
           </span>
           <p>Spits fire that is hot enough to melt boulders. known to cause forest fires unintentionally.</p>
-            <div class="width-height-container">
-            <div class="width">
-            <h2>Width</h2>
-            </div>
+          <div class="height-and-weight">
+            <span>
+              Height
+              <br/>
+              <h4 class="height-width">1.7m</h4>          
+            </span>
 
-             <div class="height">
-            <h2>Height</h2>
-            </div>
+            <span class="width">
+              Width
+              <br/>
+              <h4 class="height-width">90.5kg</h4>
+            </span>
           </div>
-          </div>
+        </div>
     `;
   }
 }
