@@ -53,8 +53,8 @@ function displayPokemon() {
     selectedPokemon.innerHTML = `
       <div class="display-pokemon">
           <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
-          <br/> 
-          <br/>
+          
+          
             <h3 class="n-degree">N° 6</h3>
           <h2 class="pokemon-name">Charizard</h2>
           <br/>
@@ -80,7 +80,25 @@ function displayPokemon() {
               <h4 class="height-width">90.5kg</h4>
             </span>
           </div>
+
+          <div class="abilities-container">
+          <h2>Abilities</h2>
+          <div class="ability-info">
+            <h4 class="ability">1.7m</h4>         
+            <h4 class="ability">90.5kg</h4>
+          </div>
+          </div>
+
+          <div class="evolution-container">
+            <h2>Evolution</h2>
+            <div class="evolution-pokemon-container">
+              <a href="#"><img class="evolution-pokemon" src="./imgs/charmander.webp"></a>
+              <a href="#"><img class="evolution-pokemon" src="./imgs/charmeleon.png"></a>
+              <a href="#"><img class="evolution-pokemon" src="./imgs/charizard.png"></a>
+            </div>
+          </div>
         </div>
+   
     `;
   }
 }

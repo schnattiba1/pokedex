@@ -7,4 +7,9 @@
     flex-direction: column;
     padding: 0 20px;
   }
+
+  form {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
 }
