@@ -119,7 +119,7 @@ form {
 
 .display-pokemon-container {
   position: sticky;
-  top: 300px;
+  top: 250px;
   align-self: flex-start;
   width: 320px;
 }
@@ -131,8 +131,6 @@ form {
 }
 
 .display-pokemon {
-  /*background-color: aliceblue;*/
-  /*background-color: #ffffff;*/
   background-color: #f0f0f0;
   color: black;
   padding: 90px 90px 90px 90px;
@@ -311,8 +309,4 @@ form {
 
 .evolution-pokemon:hover {
   transform: scale(1.1);
-}
-
-.display-pokemon-content-container {
-  text-align: center;
 }

@@ -54,7 +54,6 @@ function displayPokemon() {
       <div class="display-pokemon">
           <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
           
-          
             <h3 class="n-degree">N° 6</h3>
           <h2 class="pokemon-name">Charizard</h2>
           <br/>
