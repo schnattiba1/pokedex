@@ -28,6 +28,11 @@ html.dark-theme .display-pokemon {
   color: white;
 }
 
+html.width-height-container p {
+  background-color: #222;
+  color: white;
+}
+
 html.dark-theme .select-pokemon-card {
   background-color: #222;
   color: white;
@@ -118,8 +123,12 @@ form {
   background-color: aliceblue;
   color: black;
   padding: 90px 90px 90px 90px;
-  height: 82vh;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 82vh;
+  padding: 0;
 }
 
 .select-pokemon-card-container {
@@ -178,4 +187,63 @@ form {
   font-weight: 600;
   font-size: 10px;
   opacity: 0.8;
+}
+
+.pokemon-img {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 66vh;
+  margin-right: auto;
+  margin-left: auto;
+  object-fit: contain;
+  max-width: 350px;
+  max-height: 22vh;
+}
+
+.abilities {
+  text-align: center;
+}
+
+.type-ability {
+  margin-right: 20px;
+  padding: 10px 10px;
+  margin: 5px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+.n-degree {
+  opacity: 0.6;
+}
+
+.display-pokemon h3 {
+  text-align: center;
+}
+
+.display-pokemon p {
+  margin-top: 50px;
+  font-size: 12px;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.width-height-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.width-height-container h2 {
+  font-size: 15px;
+  justify-content: space-around;
+}
+
+.width-height-container p {
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 5px 5px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin: 20px auto;
 }
