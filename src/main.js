@@ -54,7 +54,8 @@ function displayPokemon() {
       <div class="display-pokemon">
           <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
           
-            <h3 class="n-degree">N° 6</h3>
+          <div class="wrapper">
+          <h3 class="n-degree">N° 6</h3>
           <h2 class="pokemon-name">Charizard</h2>
           <br/>
           <span class="abilities">
@@ -95,8 +96,9 @@ function displayPokemon() {
               <a href="#"><img class="evolution-pokemon" src="./imgs/charmeleon.png"></a>
               <a href="#"><img class="evolution-pokemon" src="./imgs/charizard.png"></a>
             </div>
+            </div>
           </div>
-        </div>
+      
    
     `;
   }
