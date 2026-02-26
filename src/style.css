@@ -138,7 +138,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 82vh;
+  height: 92vh;
   padding: 0;
 }
 
@@ -152,6 +152,7 @@ form {
 
 .select-pokemon-card {
   width: 325px;
+
   background-color: #f0f0f0;
   border-radius: 8px;
   overflow: hidden;

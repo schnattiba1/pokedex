@@ -47,7 +47,6 @@ function pikaPika(event) {
 
 function displayPokemon() {
   let pokemonElement = document.querySelector("#pokemon");
-  //let selectedPokemon = document.querySelector("#selected-pokemon");
   if (pokemonElement) {
     let selectedPokemon = document.querySelector("#selected-pokemon");
     selectedPokemon.innerHTML = `
