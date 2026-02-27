@@ -73,9 +73,13 @@ function displayPokemonCards() {
     `;
 
     pokemonElement.addEventListener("click", displayPokemon);
+    pokemonElement.addEventListener("click", displayPokemonsResponsive);
   }
 }
 displayPokemonCards();
 
-let pokemonElement = document.querySelector("#pokemon");
-pokemonElement.addEventListener("click", displayPokemon);
+// Responsive design
+function displayPokemonsResponsive() {
+  let responsiveElement = document.querySelector("#body-responsive");
+  responsiveElement.classList.toggle("body-responsive");
+}

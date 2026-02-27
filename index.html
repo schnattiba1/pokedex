@@ -20,7 +20,7 @@
     />
     <title>Pokédex</title>
   </head>
-  <body>
+  <body id="body-responsive" class="body-responsive">
     <header id="header">
       <img class="img" id="psyduck" src="./imgs/psyduck.png" alt="psyduck" />
       <img id="sound" class="img" src="./imgs/volume-mute.png" alt="volume" />
@@ -35,11 +35,12 @@
       </form>
     </div>
 
-    <div class="main-content">
-      <!-- Desktop -->
+    <div class="main-content" id="main-content">
       <div class="select-pokemon-card-container">
         <div id="render-pokemon"></div>
+        <div id="render-pokemon-responsive"></div>
       </div>
+
       <!--<img class="loading-pokeball" src="./imgs/pokeball-loading.gif" />-->
       <div class="display-pokemon-container">
         <div class="display-pokemon" id="selected-pokemon">
