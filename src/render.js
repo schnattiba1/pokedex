@@ -1,9 +1,9 @@
-function displayPokemon() {
+// Desktop to display selected pokemon
+function displayPokemon(event) {
   let selectedPokemon = document.querySelector("#selected-pokemon");
   selectedPokemon.innerHTML = `
       <div class="display-pokemon">
           <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
-          
           <div class="wrapper">
           <h3 class="n-degree">N° 6</h3>
           <h2 class="pokemon-name">Charizard</h2>
@@ -51,11 +51,12 @@ function displayPokemon() {
     `;
 }
 
+// Both Desktop and Mobile to display pokemon cards
 function displayPokemonCards() {
   let pokemonElement = document.querySelector("#render-pokemon");
   if (pokemonElement) {
     pokemonElement.innerHTML = `
-       <div class="select-pokemon-card" id="pokemon">
+       <div class="select-pokemon-card" id="pokemon"">
           <img src="./imgs/charizard.gif" alt="Charizard" />
           <div class="select-pokemon-card-content">
             <span class="span">N° 6</span>
@@ -71,15 +72,8 @@ function displayPokemonCards() {
           </div>
         </div>
     `;
-
     pokemonElement.addEventListener("click", displayPokemon);
-    pokemonElement.addEventListener("click", displayPokemonsResponsive);
   }
 }
-displayPokemonCards();
 
-// Responsive design
-function displayPokemonsResponsive() {
-  let responsiveElement = document.querySelector("#body-responsive");
-  responsiveElement.classList.toggle("body-responsive");
-}
+displayPokemonCards();

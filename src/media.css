@@ -1,11 +1,16 @@
 @media (max-width: 1100px) {
+  .main-content {
+    display: block;
+    margin: 0 auto;
+  }
+
   .display-pokemon-container {
     display: none;
   }
 
-  .main-content {
-    flex-direction: column;
-    padding: 0 20px;
+  .display-pokemon-responsive {
+    display: block;
+    margin: 0 auto;
   }
 
   form {
@@ -13,7 +18,41 @@
     margin-left: 20px;
   }
 
+  .img {
+    height: 45px;
+  }
+
+  .form-container {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .select-pokemon-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
   .body-responsive {
-    display: none;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .select-pokemon-card {
+    width: 200px;
+  }
+
+  .select-pokemon-card {
+    width: 80%;
+    max-width: 250px;
   }
 }
