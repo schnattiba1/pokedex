@@ -1,8 +1,11 @@
-// Desktop to display selected pokemon
-function displayPokemon(event) {
+function displayPokemon() {
   let selectedPokemon = document.querySelector("#selected-pokemon");
-  selectedPokemon.innerHTML = `
+  // Checking if selectedPokemon element exists
+  if (selectedPokemon) {
+    const isMobile = window.innerWidth <= 1100;
+    selectedPokemon.innerHTML = `
       <div class="display-pokemon">
+        ${isMobile ? '<button class="close-button">×</button>' : ''}
           <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
           <div class="wrapper">
           <h3 class="n-degree">N° 6</h3>
@@ -20,22 +23,22 @@ function displayPokemon(event) {
           <div class="height-and-weight">
             <span>
               Height
-              <br/>
-              <h4 class="height-width">1.7m</h4>          
+              <br />
+              <h4 class="height-weight">1.7m</h4>          
             </span>
 
-            <span class="width">
-              Width
+            <span class="weight">
+              Weight
               <br/>
-              <h4 class="height-width">90.5kg</h4>
+              <h4 class="height-weight">90.5kg</h4>
             </span>
           </div>
 
           <div class="abilities-container">
           <h2>Abilities</h2>
-          <div class="ability-info">
-            <h4 class="ability">1.7m</h4>         
-            <h4 class="ability">90.5kg</h4>
+          <div class="ability-info">       
+            <h4 class="ability">Blaze</h4>
+            <h4 class="ability">Solar Power</h4>
           </div>
           </div>
 
@@ -49,14 +52,28 @@ function displayPokemon(event) {
             </div>
           </div>
     `;
-}
+    if (isMobile) {
+      selectedPokemon.classList.add('active');
 
+      // Add close button functionality
+      const closeBtn = selectedPokemon.querySelector('.close-button');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          selectedPokemon.classList.remove('active');
+        });
+    }
+  } 
+  else {
+    return null;
+  }
+}
+}
 // Both Desktop and Mobile to display pokemon cards
 function displayPokemonCards() {
   let pokemonElement = document.querySelector("#render-pokemon");
   if (pokemonElement) {
     pokemonElement.innerHTML = `
-       <div class="select-pokemon-card" id="pokemon"">
+       <div class="select-pokemon-card" id="pokemon">
           <img src="./imgs/charizard.gif" alt="Charizard" />
           <div class="select-pokemon-card-content">
             <span class="span">N° 6</span>
@@ -72,8 +89,15 @@ function displayPokemonCards() {
           </div>
         </div>
     `;
-    pokemonElement.addEventListener("click", displayPokemon);
   }
+  pokemonElement.addEventListener("click", displayPokemon);
+}
+
+// Create the element if it doesn't exist
+if (!document.querySelector("#selected-pokemon")) {
+  const selectedPokemon = document.createElement('div');
+  selectedPokemon.id = 'selected-pokemon';
+  document.body.appendChild(selectedPokemon);
 }
 
 displayPokemonCards();

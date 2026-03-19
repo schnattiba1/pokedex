@@ -28,11 +28,6 @@ html.dark-theme .display-pokemon {
   color: white;
 }
 
-/*html.dark-theme .width-height-container p {
-  background-color: #222;
-  color: white;
-}*/
-
 html.dark-theme .height-and-weight h4 {
   color: white;
   background-color: #5e5e5e;
@@ -64,11 +59,6 @@ header {
 
 .volume {
   height: 60px;
-}
-
-.loading-pokeball {
-  height: 80px;
-  float: left;
 }
 
 .sound {
@@ -134,7 +124,7 @@ form {
 .display-pokemon {
   background-color: #f0f0f0;
   color: black;
-  padding: 90px 90px 90px 90px;
+  /*padding: 90px 90px 90px 90px;*/
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -201,25 +191,6 @@ form {
   opacity: 0.8;
 }
 
-/*.pokemon-img {
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: 66vh;
-  margin-right: auto;
-  margin-left: auto;
-  object-fit: contain;
-  max-width: 350px;
-  max-height: 22vh;
-}*/
-
-/*.pokemon-img {
-  display: flex;
-  flex-direction: row;
-  max-width: 990px;
-  max-height: 22vh;
-}*/
-
 .display-pokemon img {
   max-width: 520px;
   max-height: 28vh;
@@ -254,25 +225,26 @@ form {
 
 .height-and-weight {
   display: flex;
-  justify-content: space-evenly;
-  gap: 10px;
+  justify-content: space-around;
   margin-top: 20px;
 }
 
-.width {
+.weight {
   text-align: center;
 }
 
 .height-and-weight h4 {
-  font-size: 15px;
+  font-size: 14px;
   text-align: center;
 }
 
-.height-width {
+.height-weight {
   margin-top: 20px;
-  background-color: #b2b3be;
-  border-radius: 8px;
-  padding: 10px;
+  background-color: #e5e5e5;
+  border-radius: 30px;
+  padding: 8px;
+  width: 100%;
+  font-size: 14px;
 }
 
 .abilities-container {
@@ -290,12 +262,13 @@ form {
 }
 
 .ability {
-  margin-right: 15px;
-  margin-left: 20px;
+  background-color: #e5e5e5;
+  border-radius: 30px;
+  padding: 8px;
+  width: 100%;
+  font-size: 14px;
+  margin: 5px;
   margin-top: 20px;
-  background-color: #b2b3be;
-  border-radius: 8px;
-  padding: 10px;
 }
 
 .evolution-container {
