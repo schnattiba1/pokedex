@@ -1,76 +1,90 @@
-function displayPokemon() {
-  let selectedPokemon = document.querySelector("#selected-pokemon");
+async function displayPokemon(id) {
+  const selectedPokemon = document.querySelector("#selected-pokemon");
 
-  // Checking if selectedPokemon element exists
-  if (selectedPokemon) {
-    let isMobile = window.innerWidth <= 1100;
-    selectedPokemon.innerHTML = `
-      <div class="display-pokemon">
-        ${isMobile ? '<button class="close-button">X</button>' : ""}
-          <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
+  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const data = res.data;
+
+  const speciesRes = await axios.get(data.species.url);
+  const speciesData = speciesRes.data;
+
+  const englishEntry = speciesData.flavor_text_entries.find(
+    (entry) => entry.language.name === "en",
+  );
+
+  const description = englishEntry
+    ? englishEntry.flavor_text
+    : "No description available.";
+
+  let isMobile = window.innerWidth <= 1100;
+
+  selectedPokemon.innerHTML = `
+     <div class="display-pokemon">
+        ${isMobile ? '<button class="close-button">X</button>' : " "}
+          <img class="pokemon-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif" alt="${data.name}" />
           <div class="wrapper">
-          <h3 class="n-degree">N° 6</h3>
-          <h2 class="pokemon-name">Charizard</h2>
+          <h3 class="n-degree">N° ${data.id}</h3>
+          <h2 class="pokemon-name">${data.name}</h2>
           <br/>
           <span class="abilities">
-                <span class="type-ability" style="background-color: #85aeff">
-                  Flying
+                <span class="type-ability" style="background-color: ${colors[data.types[0].type.name]}">
+                  ${data.types[0].type.name}
                 </span>
-                <span class="type-ability" style="background-color: #ff6b52">
-                  Fire
+                <span class="type-ability" style="background-color: ${colors[data.types[1]?.type.name] || ""}">
+                  ${data.types[1] ? data.types[1].type.name : ""}
                 </span>
           </span>
-          <p>Spits fire that is hot enough to melt boulders. known to cause forest fires unintentionally.</p>
+          <p>${description}</p>
           <div class="height-and-weight">
             <span>
               Height
               <br />
-              <h4 class="height-weight">1.7m</h4>          
+              <h4 class="height-weight">${data.height / 10}m</h4>          
             </span>
 
             <span class="weight">
               Weight
               <br/>
-              <h4 class="height-weight">90.5kg</h4>
+              <h4 class="height-weight">${data.weight / 10}kg</h4>
             </span>
           </div>
 
           <div class="abilities-container">
           <h2>Abilities</h2>
           <div class="ability-info">       
-            <h4 class="ability">Blaze</h4>
-            <h4 class="ability">Solar Power</h4>
+            <h4 class="ability">${data.abilities[0].ability.name}</h4>
+            <h4 class="ability">${data.abilities[1]?.ability.name || "N/A"}</h4>
           </div>
           </div>
 
           <div class="evolution-container">
             <h2>Evolution</h2>
             <div class="evolution-pokemon-container">
-              <a href="#"><img class="evolution-pokemon" src="./imgs/charmander.webp"></a>
-              <a href="#"><img class="evolution-pokemon" src="./imgs/charmeleon.png"></a>
-              <a href="#"><img class="evolution-pokemon" src="./imgs/charizard.png"></a>
+            <!-- Evolution images -->
+              <a href="#"><img class="evolution-pokemon" src=""></a>
+              <a href="#"><img class="evolution-pokemon" src=""></a>
+              <a href="#"><img class="evolution-pokemon" src=""></a>
             </div>
             </div>
           </div>
-    `;
-    if (isMobile) {
-      selectedPokemon.classList.add("active");
+  `;
 
-      // Add close button functionality
-      const closeBtn = selectedPokemon.querySelector(".close-button");
-      if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-          selectedPokemon.classList.remove("active");
-        });
-      }
+  // Mobile close button
+  if (isMobile) {
+    selectedPokemon.classList.add("active");
+
+    const closeBtn = selectedPokemon.querySelector(".close-button");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        selectedPokemon.classList.remove("active");
+      });
     }
   }
 }
 
-function getPokemon(response) {
+async function getPokemon(response) {
   const pokemonElement = document.querySelector("#render-pokemon");
 
-  let html = "";
+  let html = `<div class="pokemon-cards-container">`;
 
   response.data.results.forEach((pokemon, index) => {
     const id = index + 1;
@@ -84,7 +98,7 @@ function getPokemon(response) {
           <h3>${pokemon.name}</h3>
         </div>
       </div>
-    `;
+      `;
   });
 
   pokemonElement.innerHTML = html;
@@ -93,7 +107,7 @@ function getPokemon(response) {
 function displayPokemonCards() {
   let pokemonElement = document.querySelector("#render-pokemon");
   //axios.get("https://pokeapi.co/api/v2/ability?limit=1000").then(getCard);
-  axios.get("https://pokeapi.co/api/v2/pokemon?limit=150").then(getPokemon);
+  axios.get("https://pokeapi.co/api/v2/pokemon?limit=all").then(getPokemon);
   if (pokemonElement) {
     pokemonElement.innerHTML = `
        <div class="select-pokemon-card" id="pokemon">
@@ -116,12 +130,16 @@ function displayPokemonCards() {
   pokemonElement.addEventListener("click", displayPokemon);
 }
 
-// Create the element if it doesn't exist
-if (!document.querySelector("#selected-pokemon")) {
-  const selectedPokemon = document.createElement("div");
-  selectedPokemon.id = "selected-pokemon";
-  document.body.appendChild(selectedPokemon);
-}
+document
+  .querySelector("#render-pokemon")
+  .addEventListener("click", function (e) {
+    const card = e.target.closest(".select-pokemon-card");
+    if (!card) return;
+
+    const id = card.dataset.id;
+
+    displayPokemon(id); // 👈 pass ID
+  });
 
 const colors = {
   normal: "#A8A77A",
