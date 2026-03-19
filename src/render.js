@@ -1,11 +1,12 @@
 function displayPokemon() {
   let selectedPokemon = document.querySelector("#selected-pokemon");
+
   // Checking if selectedPokemon element exists
   if (selectedPokemon) {
-    const isMobile = window.innerWidth <= 1100;
+    let isMobile = window.innerWidth <= 1100;
     selectedPokemon.innerHTML = `
       <div class="display-pokemon">
-        ${isMobile ? '<button class="close-button">×</button>' : ""}
+        ${isMobile ? '<button class="close-button">X</button>' : ""}
           <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
           <div class="wrapper">
           <h3 class="n-degree">N° 6</h3>
@@ -62,14 +63,37 @@ function displayPokemon() {
           selectedPokemon.classList.remove("active");
         });
       }
-    } else {
-      return null;
     }
   }
 }
-// Both Desktop and Mobile to display pokemon cards
+
+function getPokemon(response) {
+  const pokemonElement = document.querySelector("#render-pokemon");
+
+  let html = "";
+
+  response.data.results.forEach((pokemon, index) => {
+    const id = index + 1;
+    html += `
+      <div class="select-pokemon-card" data-id="${id}">
+        <img 
+         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"
+        />
+        <div class="select-pokemon-card-content">
+          <span>N° ${id}</span>
+          <h3>${pokemon.name}</h3>
+        </div>
+      </div>
+    `;
+  });
+
+  pokemonElement.innerHTML = html;
+}
+
 function displayPokemonCards() {
   let pokemonElement = document.querySelector("#render-pokemon");
+  //axios.get("https://pokeapi.co/api/v2/ability?limit=1000").then(getCard);
+  axios.get("https://pokeapi.co/api/v2/pokemon?limit=150").then(getPokemon);
   if (pokemonElement) {
     pokemonElement.innerHTML = `
        <div class="select-pokemon-card" id="pokemon">
@@ -98,5 +122,26 @@ if (!document.querySelector("#selected-pokemon")) {
   selectedPokemon.id = "selected-pokemon";
   document.body.appendChild(selectedPokemon);
 }
+
+const colors = {
+  normal: "#A8A77A",
+  fire: "#EE8130",
+  water: "#6390F0",
+  electric: "#F7D02C",
+  grass: "#7AC74C",
+  ice: "#96D9D6",
+  fighting: "#C22E28",
+  poison: "#A33EA1",
+  ground: "#E2BF65",
+  flying: "#A98FF3",
+  psychic: "#F95587",
+  bug: "#A6B91A",
+  rock: "#B6A136",
+  ghost: "#735797",
+  dragon: "#6F35FC",
+  dark: "#705746",
+  steel: "#B7B7CE",
+  fairy: "#D685AD",
+};
 
 displayPokemonCards();

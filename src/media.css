@@ -52,6 +52,11 @@
     right: 10px;
     cursor: pointer;
     font-size: 24px;
+    padding: 5px 10px;
+    background-color: #f54c4c;
+    color: white;
+    border: none;
+    border-radius: 10px;
   }
 }
 
