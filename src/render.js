@@ -5,7 +5,7 @@ function displayPokemon() {
     const isMobile = window.innerWidth <= 1100;
     selectedPokemon.innerHTML = `
       <div class="display-pokemon">
-        ${isMobile ? '<button class="close-button">×</button>' : ''}
+        ${isMobile ? '<button class="close-button">×</button>' : ""}
           <img class="pokemon-img" src="./imgs/charizard.gif" alt="Charizard" />
           <div class="wrapper">
           <h3 class="n-degree">N° 6</h3>
@@ -53,20 +53,19 @@ function displayPokemon() {
           </div>
     `;
     if (isMobile) {
-      selectedPokemon.classList.add('active');
+      selectedPokemon.classList.add("active");
 
       // Add close button functionality
-      const closeBtn = selectedPokemon.querySelector('.close-button');
+      const closeBtn = selectedPokemon.querySelector(".close-button");
       if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-          selectedPokemon.classList.remove('active');
+        closeBtn.addEventListener("click", () => {
+          selectedPokemon.classList.remove("active");
         });
+      }
+    } else {
+      return null;
     }
-  } 
-  else {
-    return null;
   }
-}
 }
 // Both Desktop and Mobile to display pokemon cards
 function displayPokemonCards() {
@@ -95,8 +94,8 @@ function displayPokemonCards() {
 
 // Create the element if it doesn't exist
 if (!document.querySelector("#selected-pokemon")) {
-  const selectedPokemon = document.createElement('div');
-  selectedPokemon.id = 'selected-pokemon';
+  const selectedPokemon = document.createElement("div");
+  selectedPokemon.id = "selected-pokemon";
   document.body.appendChild(selectedPokemon);
 }
 
