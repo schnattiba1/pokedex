@@ -1,8 +1,10 @@
 async function displayPokemon(id) {
   const selectedPokemon = document.querySelector("#selected-pokemon");
 
-  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  const data = res.data;
+  const pokemonData = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon/${id}`,
+  );
+  const data = pokemonData.data;
 
   const speciesRes = await axios.get(data.species.url);
   const speciesData = speciesRes.data;
@@ -16,6 +18,27 @@ async function displayPokemon(id) {
     : "No description available.";
 
   let isMobile = window.innerWidth <= 1100;
+
+  const colors = {
+    normal: "#A8A77A",
+    fire: "#EE8130",
+    water: "#6390F0",
+    electric: "#F7D02C",
+    grass: "#7AC74C",
+    ice: "#96D9D6",
+    fighting: "#C22E28",
+    poison: "#A33EA1",
+    ground: "#E2BF65",
+    flying: "#A98FF3",
+    psychic: "#F95587",
+    bug: "#A6B91A",
+    rock: "#B6A136",
+    ghost: "#735797",
+    dragon: "#6F35FC",
+    dark: "#705746",
+    steel: "#B7B7CE",
+    fairy: "#D685AD",
+  };
 
   selectedPokemon.innerHTML = `
      <div class="display-pokemon">
@@ -106,27 +129,7 @@ async function getPokemon(response) {
 
 function displayPokemonCards() {
   let pokemonElement = document.querySelector("#render-pokemon");
-  //axios.get("https://pokeapi.co/api/v2/ability?limit=1000").then(getCard);
   axios.get("https://pokeapi.co/api/v2/pokemon?limit=all").then(getPokemon);
-  if (pokemonElement) {
-    pokemonElement.innerHTML = `
-       <div class="select-pokemon-card" id="pokemon">
-          <img src="./imgs/charizard.gif" alt="Charizard" />
-          <div class="select-pokemon-card-content">
-            <span class="span">N° 6</span>
-            <h3>Charizard</h3>
-            <span class="row">
-              <div class="type-container" style="background-color: #85aeff">
-                Flying
-              </div>
-              <div class="type-container" style="background-color: #ff6b52">
-                Fire
-              </div>
-            </span>
-          </div>
-        </div>
-    `;
-  }
   pokemonElement.addEventListener("click", displayPokemon);
 }
 
@@ -138,28 +141,7 @@ document
 
     const id = card.dataset.id;
 
-    displayPokemon(id); // 👈 pass ID
+    displayPokemon(id);
   });
-
-const colors = {
-  normal: "#A8A77A",
-  fire: "#EE8130",
-  water: "#6390F0",
-  electric: "#F7D02C",
-  grass: "#7AC74C",
-  ice: "#96D9D6",
-  fighting: "#C22E28",
-  poison: "#A33EA1",
-  ground: "#E2BF65",
-  flying: "#A98FF3",
-  psychic: "#F95587",
-  bug: "#A6B91A",
-  rock: "#B6A136",
-  ghost: "#735797",
-  dragon: "#6F35FC",
-  dark: "#705746",
-  steel: "#B7B7CE",
-  fairy: "#D685AD",
-};
 
 displayPokemonCards();
