@@ -7,17 +7,9 @@ async function displayPokemon(id) {
   const data = pokemonData.data;
 
   const speciesData = await axios.get(data.species.url);
-  const evolutionData = speciesData.data;
+  const pokemonDescriptionData = speciesData.data;
 
-  /*const englishEntry = evolutionData.flavor_text_entries.find(
-    (entry) => entry.language.name === "en",
-  );
-
-  const description = englishEntry
-    ? englishEntry.flavor_text
-    : "No description available.";*/
-
-  const englishEntry = evolutionData.flavor_text_entries.find(
+  const englishEntry = pokemonDescriptionData.flavor_text_entries.find(
     (entry) => entry.language.name === "en",
   );
 
@@ -50,9 +42,26 @@ async function displayPokemon(id) {
   };
 
   const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
-  //const imgEvolutionSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 
-  // Get pokemon imgs from big to small based on what pokemon card the user clicks on
+  let evolutionRes = await axios.get(speciesData.data.evolution_chain.url);
+  let evolutionHTML = "";
+  let currentEvolution = evolutionRes.data.chain;
+
+  while (currentEvolution) {
+    const name = currentEvolution.species.name;
+    // Take the URL and extract the Pokémon ID from the end
+    const evoId = currentEvolution.species.url.split("/").filter(Boolean).pop();
+
+    const gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${evoId}.gif`;
+
+    evolutionHTML += `
+    <a href="#" onclick="displayPokemon(${evoId})">
+      <img class="evolution-pokemon" src="${gifUrl}" alt="${name}">
+    </a>
+  `;
+
+    currentEvolution = currentEvolution.evolves_to[0];
+  }
 
   selectedPokemon.innerHTML = `
      <div class="display-pokemon">
@@ -97,9 +106,7 @@ async function displayPokemon(id) {
             <h2>Evolution</h2>
             <div class="evolution-pokemon-container">
             <!-- Evolution images -->
-              <a href="#"><img class="evolution-pokemon" src="${evolutionChain}"></a>
-              <a href="#"><img class="evolution-pokemon" src="${evolutionChain}"></a>
-              <a href="#"><img class="evolution-pokemon" src="${evolutionChain}"></a>
+              ${evolutionHTML}
             </div>
             </div>
           </div>

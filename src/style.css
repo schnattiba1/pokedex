@@ -293,6 +293,7 @@ form {
   width: 70px;
   height: 70px;
   transition: transform 0.5s;
+  image-rendering: pixelated;
 }
 
 .evolution-pokemon:hover {
