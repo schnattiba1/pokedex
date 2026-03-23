@@ -6,15 +6,24 @@ async function displayPokemon(id) {
   );
   const data = pokemonData.data;
 
-  const speciesRes = await axios.get(data.species.url);
-  const speciesData = speciesRes.data;
+  const speciesData = await axios.get(data.species.url);
+  const evolutionData = speciesData.data;
 
-  const englishEntry = speciesData.flavor_text_entries.find(
+  /*const englishEntry = evolutionData.flavor_text_entries.find(
     (entry) => entry.language.name === "en",
   );
 
   const description = englishEntry
     ? englishEntry.flavor_text
+    : "No description available.";*/
+
+  const englishEntry = evolutionData.flavor_text_entries.find(
+    (entry) => entry.language.name === "en",
+  );
+
+  // Replace form feed characters with spaces for better readability
+  const description = englishEntry
+    ? englishEntry.flavor_text.replace(/\f/g, " ")
     : "No description available.";
 
   let isMobile = window.innerWidth <= 1100;
@@ -40,10 +49,15 @@ async function displayPokemon(id) {
     fairy: "#D685AD",
   };
 
+  const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
+  //const imgEvolutionSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+  // Get pokemon imgs from big to small based on what pokemon card the user clicks on
+
   selectedPokemon.innerHTML = `
      <div class="display-pokemon">
         ${isMobile ? '<button class="close-button">X</button>' : " "}
-          <img class="pokemon-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif" alt="${data.name}" />
+          <img class="pokemon-img" src="${imgSrc}" alt="${data.name}" />
           <div class="wrapper">
           <h3 class="n-degree">N° ${data.id}</h3>
           <h2 class="pokemon-name">${data.name}</h2>
@@ -83,9 +97,9 @@ async function displayPokemon(id) {
             <h2>Evolution</h2>
             <div class="evolution-pokemon-container">
             <!-- Evolution images -->
-              <a href="#"><img class="evolution-pokemon" src=""></a>
-              <a href="#"><img class="evolution-pokemon" src=""></a>
-              <a href="#"><img class="evolution-pokemon" src=""></a>
+              <a href="#"><img class="evolution-pokemon" src="${evolutionChain}"></a>
+              <a href="#"><img class="evolution-pokemon" src="${evolutionChain}"></a>
+              <a href="#"><img class="evolution-pokemon" src="${evolutionChain}"></a>
             </div>
             </div>
           </div>
@@ -109,6 +123,8 @@ async function getPokemon(response) {
 
   let html = `<div class="pokemon-cards-container">`;
 
+  //pokemon.name
+
   response.data.results.forEach((pokemon, index) => {
     const id = index + 1;
     html += `
@@ -118,7 +134,7 @@ async function getPokemon(response) {
         />
         <div class="select-pokemon-card-content">
           <span>N° ${id}</span>
-          <h3>${pokemon.name}</h3>
+          <h3>${pokemon.name}</h3> 
         </div>
       </div>
       `;

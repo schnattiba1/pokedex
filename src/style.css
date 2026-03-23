@@ -49,6 +49,11 @@ header {
   box-shadow: 0 3px 6px -6px #222;
 }
 
+body::selection {
+  background-color: #f54c4c;
+  color: white;
+}
+
 .img {
   height: 50px;
   margin-left: 20px;
@@ -211,9 +216,9 @@ form {
 }
 
 .display-pokemon p {
-  margin-top: 50px;
+  margin-top: 30px;
   font-size: 12px;
-  line-height: 1.9;
+  line-height: 2.3; /* 1.9 */
   text-align: center;
 }
 
