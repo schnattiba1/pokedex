@@ -58,6 +58,26 @@
     border: none;
     border-radius: 10px;
   }
+
+  h2 {
+    font-size: 14px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  .abilities-container h2 {
+    font-size: 14px;
+  }
+
+  .evolution-container h2 {
+    font-size: 14px;
+  }
+
+  .pokemon-img {
+    width: 40%;
+  }
 }
 
 @media (max-width: 500px) {
