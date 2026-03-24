@@ -49,6 +49,7 @@ async function displayPokemon(id) {
 
   while (currentEvolution) {
     const name = currentEvolution.species.name;
+
     // Take the URL and extract the Pokémon ID from the end
     const evoId = currentEvolution.species.url.split("/").filter(Boolean).pop();
 
@@ -125,6 +126,25 @@ async function displayPokemon(id) {
   }
 }
 
+// Infinite scrolling
+const limit = 20;
+let offset = 0;
+let isLoading = false;
+
+function fetchPokemon() {
+  if (isLoading) return;
+
+  isLoading = true;
+
+  axios
+    .get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
+    .then((response) => {
+      renderPokemon(response);
+      offset += limit; // move to next page
+      isLoading = false;
+    });
+}
+
 async function getPokemon(response) {
   const pokemonElement = document.querySelector("#render-pokemon");
 
@@ -134,10 +154,11 @@ async function getPokemon(response) {
 
   response.data.results.forEach((pokemon, index) => {
     const id = index + 1;
+    const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
     html += `
       <div class="select-pokemon-card" data-id="${id}">
         <img 
-         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"
+         src="${imgSrc}"
         />
         <div class="select-pokemon-card-content">
           <span>N° ${id}</span>
@@ -150,11 +171,42 @@ async function getPokemon(response) {
   pokemonElement.innerHTML = html;
 }
 
-function displayPokemonCards() {
+function renderPokemon(response) {
   let pokemonElement = document.querySelector("#render-pokemon");
-  axios.get("https://pokeapi.co/api/v2/pokemon?limit=all").then(getPokemon);
+  //axios.get("https://pokeapi.co/api/v2/pokemon?limit=100000").then(getPokemon);
   pokemonElement.addEventListener("click", displayPokemon);
+
+  const container = document.querySelector(".pokemon-cards-container");
+  let html = `<div class="pokemon-cards-container">`;
+
+  response.data.results.forEach((pokemon, index) => {
+    const id = offset + index + 1;
+
+    const card = document.createElement("div");
+    card.classList.add("select-pokemon-card");
+    card.setAttribute("data-id", id);
+
+    card.innerHTML = `
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png" />
+      <div class="select-pokemon-card-content">
+        <span>N° ${id}</span>
+        <h3>${pokemon.name}</h3>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
 }
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const fullHeight = document.documentElement.scrollHeight;
+
+  if (scrollTop + windowHeight >= fullHeight - 50) {
+    fetchPokemon();
+  }
+});
 
 document
   .querySelector("#render-pokemon")
@@ -167,4 +219,4 @@ document
     displayPokemon(id);
   });
 
-displayPokemonCards();
+fetchPokemon();
