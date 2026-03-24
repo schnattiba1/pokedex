@@ -283,6 +283,7 @@ form {
   display: flex;
   margin-top: 20px;
   justify-content: center;
+  gap: 50px;
 }
 
 .evolution-pokemon {
@@ -290,10 +291,11 @@ form {
   margin: 0 auto;
   margin-left: 25px;
   margin-right: 30px;
-  width: 70px;
-  height: 70px;
+  width: 75%;
+  height: 85%;
   transition: transform 0.5s;
   image-rendering: pixelated;
+  margin-right: 20px;
 }
 
 .evolution-pokemon:hover {
@@ -316,7 +318,9 @@ form {
 .pokemon-img {
   display: block;
   margin: 0 auto;
-  width: 45%;
+  /*width: 45%;*/
+  max-width: 350px;
+  height: 15vh;
   image-rendering: pixelated; /*This makes the image look pixelated */
 }
 

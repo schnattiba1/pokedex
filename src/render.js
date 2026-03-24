@@ -157,7 +157,7 @@ async function displayPokemon(id) {
 }
 
 // Infinite scrolling
-const limit = 500; // How many to fetch each time
+const limit = 50; // How many to fetch each time
 let offset = 0; // Where we are in the list
 let isLoading = false; // Prevents multiple requests
 
