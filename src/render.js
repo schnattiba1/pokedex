@@ -8,11 +8,19 @@ function filterPokemonByName(event) {
 
     if (name.includes(search)) {
       card.style.display = "";
-      card.style.display = "center";
     } else {
       card.style.display = "none";
     }
   });
+}
+
+function searchBtn(event) {
+  event.preventDefault();
+  const input = document.querySelector("#input");
+  const fakeEvent = { target: input };
+  filterPokemonByName(fakeEvent);
+
+  console.log("This button works!");
 }
 
 async function displayPokemon(id) {
@@ -58,7 +66,12 @@ async function displayPokemon(id) {
     fairy: "#D685AD",
   };
 
-  const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
+  const imgSrcGif = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
+  const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${id}.png`;
+
+  const imgExist = true;
+
+  const existImg = imgExist ? imgSrcGif : imgSrcPng;
 
   let evolutionRes = await axios.get(speciesData.data.evolution_chain.url);
   let evolutionHTML = "";
@@ -74,7 +87,7 @@ async function displayPokemon(id) {
 
     evolutionHTML += `
     <a href="#" onclick="displayPokemon(${evoId})">
-      <img class="evolution-pokemon" src="${gifUrl}" alt="${name}">
+      <img class="evolution-pokemon" src="${gifUrl}"  onerror="this.onerror=null; this.src='${imgSrcPng}'" alt="${name}">
     </a>
   `;
 
@@ -84,7 +97,7 @@ async function displayPokemon(id) {
   selectedPokemon.innerHTML = `
      <div class="display-pokemon">
         ${isMobile ? '<button class="close-button">X</button>' : " "}
-          <img class="pokemon-img" src="${imgSrc}" alt="${data.name}" />
+          <img class="pokemon-img"  src="${existImg}" onerror="this.onerror=null; this.src='${imgSrcPng}'" alt="${data.name}" />
           <div class="wrapper">
           <h3 class="n-degree">N° ${data.id}</h3>
           <h2 class="pokemon-name">${data.name}</h2>
@@ -144,7 +157,7 @@ async function displayPokemon(id) {
 }
 
 // Infinite scrolling
-const limit = 20; // How many to fetch each time
+const limit = 500; // How many to fetch each time
 let offset = 0; // Where we are in the list
 let isLoading = false; // Prevents multiple requests
 
@@ -180,11 +193,12 @@ async function getPokemon(response) {
 
   response.data.results.forEach((pokemon, index) => {
     const id = index + 1;
-    const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+    //const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+    const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     html += `
       <div class="select-pokemon-card" data-id="${id}">
         <img 
-         src="${imgSrc}"
+         src="${imgSrcPng}"
         />
         <div class="select-pokemon-card-content">
           <span>N° ${id}</span>
@@ -211,8 +225,10 @@ function renderPokemon(response) {
     card.classList.add("select-pokemon-card");
     card.setAttribute("data-id", id);
 
+    const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
     card.innerHTML = `
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png" />
+      <img class="pokemon-png" src="${imgSrcPng}" />
       <div class="select-pokemon-card-content">
         <span>N° ${id}</span>
         <h3>${pokemon.name}</h3>
@@ -225,6 +241,9 @@ function renderPokemon(response) {
 
 let inputElement = document.querySelector("#input");
 inputElement.addEventListener("input", filterPokemonByName);
+
+let btnSearch = document.querySelector("#btn-search");
+btnSearch.addEventListener("click", searchBtn);
 
 document
   .querySelector("#render-pokemon")

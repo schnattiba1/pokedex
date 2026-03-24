@@ -319,3 +319,7 @@ form {
   width: 45%;
   image-rendering: pixelated; /*This makes the image look pixelated */
 }
+
+.pokemon-png {
+  image-rendering: pixelated;
+}
