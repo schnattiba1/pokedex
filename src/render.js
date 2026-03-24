@@ -1,3 +1,20 @@
+function filterPokemonByName(event) {
+  //event.preventDefault();
+  const search = event.target.value.trim().toLowerCase();
+  const cards = document.querySelectorAll(".select-pokemon-card");
+
+  cards.forEach((card) => {
+    const name = card.querySelector("h3").innerText.toLowerCase();
+
+    if (name.includes(search)) {
+      card.style.display = "";
+      card.style.display = "center";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
 async function displayPokemon(id) {
   const selectedPokemon = document.querySelector("#selected-pokemon");
 
@@ -127,9 +144,9 @@ async function displayPokemon(id) {
 }
 
 // Infinite scrolling
-const limit = 20;
-let offset = 0;
-let isLoading = false;
+const limit = 20; // How many to fetch each time
+let offset = 0; // Where we are in the list
+let isLoading = false; // Prevents multiple requests
 
 function fetchPokemon() {
   if (isLoading) return;
@@ -145,12 +162,21 @@ function fetchPokemon() {
     });
 }
 
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const fullHeight = document.documentElement.scrollHeight;
+
+  // If the user is near the bottom
+  if (scrollTop + windowHeight >= fullHeight - 50) {
+    fetchPokemon();
+  }
+});
+
 async function getPokemon(response) {
   const pokemonElement = document.querySelector("#render-pokemon");
 
   let html = `<div class="pokemon-cards-container">`;
-
-  //pokemon.name
 
   response.data.results.forEach((pokemon, index) => {
     const id = index + 1;
@@ -173,7 +199,6 @@ async function getPokemon(response) {
 
 function renderPokemon(response) {
   let pokemonElement = document.querySelector("#render-pokemon");
-  //axios.get("https://pokeapi.co/api/v2/pokemon?limit=100000").then(getPokemon);
   pokemonElement.addEventListener("click", displayPokemon);
 
   const container = document.querySelector(".pokemon-cards-container");
@@ -198,15 +223,8 @@ function renderPokemon(response) {
   });
 }
 
-window.addEventListener("scroll", () => {
-  const scrollTop = window.scrollY;
-  const windowHeight = window.innerHeight;
-  const fullHeight = document.documentElement.scrollHeight;
-
-  if (scrollTop + windowHeight >= fullHeight - 50) {
-    fetchPokemon();
-  }
-});
+let inputElement = document.querySelector("#input");
+inputElement.addEventListener("input", filterPokemonByName);
 
 document
   .querySelector("#render-pokemon")
