@@ -4,15 +4,11 @@
     margin: 0 auto;
   }
 
-  .display-pokemon-responsive {
-    display: block;
-    margin: 0 auto;
-  }
-
   form {
     margin-right: 20px;
     margin-left: 20px;
   }
+
   .container .img {
     height: 45px;
   }
@@ -20,6 +16,10 @@
   .form-container {
     display: block;
     margin: 0 auto;
+  }
+
+  .display-pokemon {
+    border-radius: 0;
   }
 
   .select-pokemon-card-container {
@@ -109,10 +109,6 @@
     font-size: 12px;
   }
 
-  /*.pokemon-img {
-    width: 25%;
-  }*/
-
   .prompt {
     font-size: 14px;
   }
@@ -136,6 +132,10 @@
     margin: 0;
   }
 
+  img {
+    margin: 0;
+  }
+
   .body-responsive {
     display: block;
     margin: 0 auto;
@@ -155,8 +155,7 @@
   }
   .evolution-pokemon-container {
     display: flex;
+    gap: 0;
     justify-content: center;
-    align-items: center;
-    gap: 10px;
   }
 }

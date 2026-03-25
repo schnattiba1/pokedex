@@ -163,6 +163,7 @@ const limit = 20; // How many to fetch each time
 let offset = 0; // Where we are in the list
 let isLoading = false; // Prevents multiple requests
 let hasError = false;
+let lastScrollTop = 0; // Sets the scroll position back to 0
 
 function fetchPokemon() {
   if (isLoading || hasError) return;
@@ -179,12 +180,12 @@ function fetchPokemon() {
 }
 
 window.addEventListener("scroll", () => {
-  const scrollTop = window.scrollY;
+  lastScrollTop = window.scrollY;
   const windowHeight = window.innerHeight;
   const fullHeight = document.documentElement.scrollHeight;
 
   // If the user is near the bottom
-  if (scrollTop + windowHeight >= fullHeight - 50) {
+  if (window.scrollY + windowHeight >= fullHeight - 50) {
     fetchPokemon();
   }
 });
@@ -201,7 +202,7 @@ async function getPokemon(response) {
     html += `
       <div class="select-pokemon-card" data-id="${id}">
         <img 
-         src="${imgSrcPng}"
+         data-src="${imgSrcPng}"
          onerror="this.onerror=null; this.src='${imgSrcPng}'"
         />
         <div class="select-pokemon-card-content">
