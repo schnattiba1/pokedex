@@ -104,6 +104,8 @@ form {
   gap: 40px;
   padding: 0 80px;
   margin-top: 60px;
+  align-items: flex-start; /* ensures sticky works */
+  min-height: 2000px; /* large enough for scrolling */
 }
 
 .no-selected-pokemon {
@@ -134,7 +136,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 92vh;
+  height: 78vh;
   padding: 0 40px;
 }
 
