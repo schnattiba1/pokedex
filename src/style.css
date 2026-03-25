@@ -19,6 +19,7 @@ html.dark-theme {
   color: white;
 }
 
+/* Prevents FOUC from happening when scrolling in dark-mode */
 html::before {
   content: "";
   position: fixed;
