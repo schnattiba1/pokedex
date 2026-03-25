@@ -196,7 +196,9 @@ form {
 }
 
 .abilities {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .type-ability {
@@ -206,6 +208,10 @@ form {
   font-size: 12px;
   border-radius: 8px;
 }
+
+/*.single-type-ability {
+  margin-right: -15px;
+}*/
 
 .n-degree {
   opacity: 0.6;
@@ -286,7 +292,7 @@ form {
   justify-content: center;
   align-items: center;
   gap: 100px;
-  margin-right: 40px;
+  /*margin-right: 40px;*/
 }
 
 .evolution-container h2 {
@@ -295,15 +301,21 @@ form {
 }
 
 .evolution-pokemon {
-  margin-left: 5px;
-  margin-right: 25px;
-  width: 145%;
+  /*margin-left: 5px;
+  margin-right: 25px;*/
+  width: 40px;
   transition: transform 0.5s;
   image-rendering: pixelated;
 }
 
+.evolution-pokemon-container a img {
+  width: 80px;
+  height: 80px;
+}
+
 .evolution-pokemon:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .wrapper {
@@ -322,7 +334,9 @@ form {
 .pokemon-img {
   display: block;
   margin: 0 auto;
-  width: 45%;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
   image-rendering: pixelated; /*This makes the image look pixelated */
 }
 

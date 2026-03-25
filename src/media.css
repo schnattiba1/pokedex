@@ -30,7 +30,7 @@
     margin-top: 20px;
   }
 
-  /* Mobile pokemon */
+  /* Mobile Pokémon Description */
   #selected-pokemon {
     position: fixed;
     top: 0;
@@ -81,10 +81,6 @@
     font-size: 10px;
   }
 
-  .evolution-pokemon {
-    width: 45%;
-  }
-
   .evolution-container h2 {
     font-size: 14px;
   }
@@ -113,13 +109,9 @@
     font-size: 12px;
   }
 
-  .evolution-pokemon-container {
-    margin-left: 30px;
-  }
-
-  .pokemon-img {
+  /*.pokemon-img {
     width: 25%;
-  }
+  }*/
 
   .prompt {
     font-size: 14px;
@@ -162,11 +154,7 @@
     width: 45%;
   }
 
-  .evolution-pokemon {
-    width: 130%;
-  }
-
   .evolution-pokemon-container {
-    margin-left: -25px;
+    gap: 5px;
   }
 }

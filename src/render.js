@@ -86,13 +86,15 @@ async function displayPokemon(id) {
     const gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${evoId}.gif`;
 
     evolutionHTML += `
-    <a href="#" onclick="displayPokemon(${evoId})">
-      <img class="evolution-pokemon" src="${gifUrl}"  onerror="this.onerror=null; this.src='${imgSrcPng}'" alt="${name}">
+    <a onclick="displayPokemon(${evoId})">
+      <img class="evolution-pokemon" src="${imgSrcPng}"  alt="${name}">
     </a>
   `;
 
     currentEvolution = currentEvolution.evolves_to[0];
   }
+
+  const imgPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${id}.png`;
 
   selectedPokemon.innerHTML = `
      <div class="display-pokemon">
