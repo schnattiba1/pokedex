@@ -1,5 +1,4 @@
 function filterPokemonByName(event) {
-  //event.preventDefault();
   const search = event.target.value.trim().toLowerCase();
   const cards = document.querySelectorAll(".select-pokemon-card");
 
@@ -43,6 +42,7 @@ async function displayPokemon(id) {
     ? englishEntry.flavor_text.replace(/\f/g, " ")
     : "No description available.";
 
+  // checks if the user's device size is less than or equal -> 1100
   let isMobile = window.innerWidth <= 1100;
 
   const colors = {
@@ -83,7 +83,7 @@ async function displayPokemon(id) {
     // Take the URL and extract the Pokémon ID from the end
     const evoId = currentEvolution.species.url.split("/").filter(Boolean).pop();
 
-    const gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${evoId}.gif`;
+    const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${evoId}.png`;
 
     evolutionHTML += `
     <a onclick="displayPokemon(${evoId})">
@@ -91,19 +91,21 @@ async function displayPokemon(id) {
     </a>
   `;
 
-    currentEvolution = currentEvolution.evolves_to[0];
+    if (currentEvolution.evolves_to.length > 0) {
+      currentEvolution = currentEvolution.evolves_to[0];
+    } else {
+      currentEvolution = null;
+    }
   }
-
-  const imgPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${id}.png`;
 
   selectedPokemon.innerHTML = `
      <div class="display-pokemon">
-        ${isMobile ? '<button class="close-button">X</button>' : " "}
+        ${isMobile ? '<button id="close-btn" class="close-button">X</button>' : " "}
           <img class="pokemon-img"  src="${existImg}" onerror="this.onerror=null; this.src='${imgSrcPng}'" alt="${data.name}" />
           <div class="wrapper">
           <h3 class="n-degree">N° ${data.id}</h3>
           <h2 class="pokemon-name">${data.name}</h2>
-          <br/>
+          
           <span class="abilities">
                 <span class="type-ability" style="background-color: ${colors[data.types[0].type.name]}">
                   ${data.types[0].type.name}
@@ -157,12 +159,13 @@ async function displayPokemon(id) {
 }
 
 // Infinite scrolling
-const limit = 50; // How many to fetch each time
+const limit = 20; // How many to fetch each time
 let offset = 0; // Where we are in the list
 let isLoading = false; // Prevents multiple requests
+let hasError = false;
 
 function fetchPokemon() {
-  if (isLoading) return;
+  if (isLoading || hasError) return;
 
   isLoading = true;
 
@@ -199,6 +202,7 @@ async function getPokemon(response) {
       <div class="select-pokemon-card" data-id="${id}">
         <img 
          src="${imgSrcPng}"
+         onerror="this.onerror=null; this.src='${imgSrcPng}'"
         />
         <div class="select-pokemon-card-content">
           <span>N° ${id}</span>
@@ -227,15 +231,25 @@ function renderPokemon(response) {
 
     const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
-    card.innerHTML = `
+    const img = new Image();
+    img.src = imgSrcPng;
+
+    // If the image exists, show all cards
+    img.onload = function () {
+      card.innerHTML = `
       <img class="pokemon-png" src="${imgSrcPng}" />
       <div class="select-pokemon-card-content">
         <span>N° ${id}</span>
         <h3>${pokemon.name}</h3>
       </div>
     `;
+      container.appendChild(card);
+    };
 
-    container.appendChild(card);
+    // If images doesn't exist, stop rendering all cards
+    img.onerror = function () {
+      hasError = true;
+    };
   });
 }
 

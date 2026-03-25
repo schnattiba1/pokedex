@@ -153,8 +153,10 @@
   .pokemon-img {
     width: 45%;
   }
-
   .evolution-pokemon-container {
-    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 }
