@@ -10,13 +10,7 @@
 }
 
 html {
-  background-image: url("../imgs/light-mode.png");
   font-family: "PokemonClassicFont";
-}
-
-html.dark-theme {
-  background-image: url("../imgs/dark-mode.png");
-  color: white;
 }
 
 /* Prevents FOUC from happening when scrolling in dark-mode */
