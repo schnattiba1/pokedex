@@ -110,17 +110,15 @@ async function displayPokemon(id) {
                   ${data.types[1] ? data.types[1].type.name : ""}
                 </span>
           </span>
-          <p>${description}</p>
+          <p class="description-pokemon">${description}</p>
           <div class="height-and-weight">
             <span>
-              Height
-              <br />
+              <h2 class="h2-height">Height</h2>
               <h4 class="height-weight">${data.height / 10}m</h4>          
             </span>
 
             <span class="weight">
-              Weight
-              <br/>
+              <h2 class="h2-weight">Weight</h2>
               <h4 class="height-weight">${data.weight / 10}kg</h4>
             </span>
           </div>
