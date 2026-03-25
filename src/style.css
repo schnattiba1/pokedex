@@ -215,11 +215,13 @@ form {
   text-align: center;
 }
 
-.display-pokemon p {
-  margin-top: 30px;
+.description-pokemon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 12px;
-  line-height: 2.3; /* 1.9 */
-  text-align: center;
+  margin-top: 25px;
+  line-height: 1.9;
 }
 
 .height-and-weight {
@@ -278,23 +280,24 @@ form {
   margin-top: 35px;
 }
 
-.evolution-container h2 {
-  font-size: 18px;
-  text-align: center;
-}
-
 .evolution-pokemon-container {
   display: flex;
   margin-top: 20px;
   justify-content: center;
   align-items: center;
   gap: 100px;
+  margin-right: 40px;
+}
+
+.evolution-container h2 {
+  font-size: 18px;
+  text-align: center;
 }
 
 .evolution-pokemon {
   margin-left: 5px;
   margin-right: 25px;
-  width: 185%;
+  width: 145%;
   transition: transform 0.5s;
   image-rendering: pixelated;
 }
