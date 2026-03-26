@@ -232,9 +232,12 @@ function renderPokemon(response) {
 
     img.onload = async function () {
       try {
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        const data = res.data;
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${id}`,
+        );
+        const data = response.data;
 
+        // Find the HP in the stats data
         const hpStat = data.stats.find((stat) => stat.stat.name === "hp");
         const hp = hpStat.base_stat;
 
