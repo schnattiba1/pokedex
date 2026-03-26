@@ -206,7 +206,6 @@ async function getPokemon(response) {
          onerror="this.onerror=null; this.src='${imgSrcPng}'"
         />
         <div class="select-pokemon-card-content">
-          <span>N° ${id}</span>
           <h3>${pokemon.name}</h3> 
         </div>
       </div>
@@ -216,7 +215,7 @@ async function getPokemon(response) {
   pokemonElement.innerHTML = html;
 }
 
-function renderPokemon(response) {
+/*function renderPokemon(response, id) {
   let pokemonElement = document.querySelector("#render-pokemon");
   pokemonElement.addEventListener("click", displayPokemon);
 
@@ -240,7 +239,6 @@ function renderPokemon(response) {
       card.innerHTML = `
       <img class="pokemon-png" src="${imgSrcPng}" />
       <div class="select-pokemon-card-content">
-        <span>N° ${id}</span>
         <h3>${pokemon.name}</h3>
       </div>
     `;
@@ -248,6 +246,60 @@ function renderPokemon(response) {
     };
 
     // If images doesn't exist, stop rendering all cards
+    img.onerror = function () {
+      hasError = true;
+    };
+
+  })
+  }*/
+
+function renderPokemon(response) {
+  const container = document.querySelector(".pokemon-cards-container");
+
+  response.data.results.forEach((pokemon, index) => {
+    const id = offset + index + 1;
+
+    const card = document.createElement("div");
+    card.classList.add("select-pokemon-card");
+    card.setAttribute("data-id", id);
+
+    const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+    const img = new Image();
+    img.src = imgSrcPng;
+
+    img.onload = async function () {
+      try {
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const data = res.data;
+
+        const hpStat = data.stats.find((stat) => stat.stat.name === "hp");
+        const hp = hpStat.base_stat;
+
+        const maxHP = 255;
+        const hpPercent = (hp / maxHP) * 100;
+
+        let hpColor = "limegreen";
+        if (hpPercent < 50) hpColor = "orange";
+        if (hpPercent < 20) hpColor = "red";
+
+        card.innerHTML = `
+          <img class="pokemon-png" src="${imgSrcPng}" />
+          <div class="select-pokemon-card-content">
+            <h3>${pokemon.name}</h3>
+
+            <div class="hp-container">
+              <div class="hp-bar" style="width:${hpPercent}%; background:${hpColor};"></div>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      } catch (err) {
+        console.error("HP fetch failed", err);
+      }
+    };
+
     img.onerror = function () {
       hasError = true;
     };
