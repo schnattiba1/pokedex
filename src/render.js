@@ -215,44 +215,6 @@ async function getPokemon(response) {
   pokemonElement.innerHTML = html;
 }
 
-/*function renderPokemon(response, id) {
-  let pokemonElement = document.querySelector("#render-pokemon");
-  pokemonElement.addEventListener("click", displayPokemon);
-
-  const container = document.querySelector(".pokemon-cards-container");
-  let html = `<div class="pokemon-cards-container">`;
-
-  response.data.results.forEach((pokemon, index) => {
-    const id = offset + index + 1;
-
-    const card = document.createElement("div");
-    card.classList.add("select-pokemon-card");
-    card.setAttribute("data-id", id);
-
-    const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
-    const img = new Image();
-    img.src = imgSrcPng;
-
-    // If the image exists, show all cards
-    img.onload = function () {
-      card.innerHTML = `
-      <img class="pokemon-png" src="${imgSrcPng}" />
-      <div class="select-pokemon-card-content">
-        <h3>${pokemon.name}</h3>
-      </div>
-    `;
-      container.appendChild(card);
-    };
-
-    // If images doesn't exist, stop rendering all cards
-    img.onerror = function () {
-      hasError = true;
-    };
-
-  })
-  }*/
-
 function renderPokemon(response) {
   const container = document.querySelector(".pokemon-cards-container");
 
