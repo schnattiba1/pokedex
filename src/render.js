@@ -1,3 +1,10 @@
+// Infinite scrolling
+const limit = 300; // How many to fetch each time
+let offset = 0; // Where we are in the list
+let isLoading = false; // Prevents multiple requests
+let hasError = false;
+let lastScrollTop = 0; // Sets the scroll position back to 0
+
 function filterPokemonByName(event) {
   const search = event.target.value.trim().toLowerCase();
   const cards = document.querySelectorAll(".select-pokemon-card");
@@ -158,13 +165,6 @@ async function displayPokemon(id) {
   }
 }
 
-// Infinite scrolling
-const limit = 20; // How many to fetch each time
-let offset = 0; // Where we are in the list
-let isLoading = false; // Prevents multiple requests
-let hasError = false;
-let lastScrollTop = 0; // Sets the scroll position back to 0
-
 function fetchPokemon() {
   if (isLoading || hasError) return;
 
@@ -197,7 +197,6 @@ async function getPokemon(response) {
 
   response.data.results.forEach((pokemon, index) => {
     const id = index + 1;
-    //const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
     const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     html += `
       <div class="select-pokemon-card" data-id="${id}">
