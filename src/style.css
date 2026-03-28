@@ -375,6 +375,6 @@ form {
   transition: width 0.3s ease;
 }
 
-.is_hidden {
+.is-hidden {
   display: none;
 }

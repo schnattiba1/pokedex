@@ -5,9 +5,32 @@ let isLoading = false; // Prevents multiple requests
 let hasError = false;
 let lastScrollTop = 0; // Sets the scroll position back to 0
 
+let allPokemon = []; // Store all fetched Pokémon for search functionality
+let currentList = []; // Store the current list of Pokémon being displayed
+
+// Stops infinite scrolling when the user searches for a Pokémon, preventing unnecessary API calls and improving performance
+let isSearching = false;
+
 function filterPokemonByName(event) {
   const search = event.target.value.trim().toLowerCase();
   const cards = document.querySelectorAll(".select-pokemon-card");
+
+  // Find an exact match for the search term in the allPokemon array
+  const exactMatch = allPokemon.find(
+    (pokemon) => pokemon.name.toLowerCase() === search,
+  );
+
+  if (exactMatch) {
+    isSearching = true; // disables scroll
+
+    currentList = [exactMatch];
+  } else {
+    isSearching = search !== ""; // still searching but partial
+
+    currentList = allPokemon.filter((pokemon) =>
+      pokemon.name.replaceAll("-", " ").toLowerCase().includes(search),
+    );
+  }
 
   cards.forEach((card) => {
     const name = card.querySelector("h3").innerText.toLowerCase();
@@ -180,6 +203,7 @@ function fetchPokemon() {
 }
 
 window.addEventListener("scroll", () => {
+  if (isSearching) return; // Prevent infinite scrolling while searching
   lastScrollTop = window.scrollY;
   const windowHeight = window.innerHeight;
   const fullHeight = document.documentElement.scrollHeight;
