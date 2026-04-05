@@ -35,7 +35,6 @@ function filterPokemonByName(event) {
 
   if (exactMatch) {
     isSearching = true; // disables scroll
-
     currentList = [exactMatch];
   } else {
     isSearching = search !== ""; // still searching but partial
