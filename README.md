@@ -82,8 +82,6 @@ Searching for a pokemon - Mobile
 <img width="342" alt="Pokédex" src="https://github.com/user-attachments/assets/b0caa509-b7a3-4733-905e-539c25cb8419" />
 
 # Credits
-The API I used for this project
-
 PokeAPI: https://pokeapi.co/
 
 # Contributions
