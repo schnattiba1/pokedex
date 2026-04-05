@@ -83,6 +83,7 @@ Searching for a pokemon - Mobile
 
 # Credits
 The API I used for this project
+
 PokeAPI: https://pokeapi.co/
 
 # Contributions
