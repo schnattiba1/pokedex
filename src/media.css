@@ -8,13 +8,24 @@
     width: 300px;
   }
 
-  form {
-    margin-right: 20px;
-    margin-left: 20px;
+  .img {
+    height: 30px;
   }
 
-  .container .img {
-    height: 45px;
+  h2 {
+    font-size: 14px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  .display-pokemon {
+    border-radius: 0;
+  }
+
+  .display-pokemon p {
+    font-size: 10px;
   }
 
   .form-container {
@@ -22,8 +33,13 @@
     margin: 0 auto;
   }
 
-  .display-pokemon {
-    border-radius: 0;
+  form {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .prompt {
+    font-size: 14px;
   }
 
   .select-pokemon-card-container {
@@ -65,32 +81,24 @@
     border-radius: 10px;
   }
 
-  h2 {
-    font-size: 14px;
-  }
-
-  span {
-    font-size: 12px;
-  }
-
-  .abilities-container h2 {
-    font-size: 14px;
+  .description-pokemon {
+    font-size: 10px;
   }
 
   .height-and-weight {
     margin-top: 20px;
   }
 
-  .display-pokemon p {
-    font-size: 10px;
-  }
-
-  .evolution-container h2 {
-    font-size: 14px;
-  }
-
   .height-and-weight span {
     font-size: 10px;
+  }
+
+  span .h2-height {
+    font-size: 12px;
+  }
+
+  span .h2-weight {
+    font-size: 12px;
   }
 
   .abilities-container {
@@ -105,14 +113,6 @@
     font-size: 10px;
   }
 
-  .evolution-container {
-    margin-top: 20px;
-  }
-
-  .evolution-container h2 {
-    font-size: 12px;
-  }
-
   span.abilities {
     display: flex;
     justify-content: center;
@@ -121,24 +121,12 @@
     margin-left: 50px;
   }
 
-  .prompt {
-    font-size: 14px;
+  .evolution-container {
+    margin-top: 20px;
   }
 
-  span .h2-height {
+  .evolution-container h2 {
     font-size: 12px;
-  }
-
-  span .h2-weight {
-    font-size: 12px;
-  }
-
-  .description-pokemon {
-    font-size: 10px;
-  }
-
-  .img {
-    height: 30px;
   }
 }
 
@@ -169,6 +157,7 @@
   .pokemon-img {
     width: 45%;
   }
+
   .evolution-pokemon-container {
     display: flex;
     gap: 0;
