@@ -19,6 +19,9 @@ const colors = {
   fairy: "#D685AD",
 };
 
+// checks if the user's device size is less than or equal -> 1100
+let isMobile = window.innerWidth <= 1100;
+
 // Infinite scrolling
 const limit = 300; // How many to fetch each time
 let offset = 0; // Where we are in the list
@@ -172,9 +175,6 @@ async function displayPokemon(id) {
   const selectedPokemon = document.querySelector("#selected-pokemon");
 
   const { data, description, evolutionHTML } = await getAllPokemon(id);
-
-  // checks if the user's device size is less than or equal -> 1100
-  let isMobile = window.innerWidth <= 1100;
 
   const imgSrcGif = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
   const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${id}.png`;
