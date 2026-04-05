@@ -73,13 +73,13 @@ Dark theme - Mobile
 Displayed pokemon - Mobile
 
 
-<img width="342" height="325" alt="Pokédex" src="https://github.com/user-attachments/assets/f8d09c47-bbde-46e8-a63f-28c8d17b1b49" />
+<img width="342" alt="Pokédex" src="https://github.com/user-attachments/assets/f8d09c47-bbde-46e8-a63f-28c8d17b1b49" />
 
 
 Searching for a pokemon - Mobile
 
 
-<img width="342" height="325" alt="Pokédex" src="https://github.com/user-attachments/assets/b0caa509-b7a3-4733-905e-539c25cb8419" />
+<img width="342" alt="Pokédex" src="https://github.com/user-attachments/assets/b0caa509-b7a3-4733-905e-539c25cb8419" />
 
 # Credits
 The API I used for this project
