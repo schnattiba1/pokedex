@@ -1,15 +1,23 @@
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loading-pikachu");
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark") {
-    loader.style.backgroundColor = "#2d2d2d";
-  } else {
-    loader.style.backgroundColor = "white";
-  }
-
-  loader.classList.add("hidden");
-});
+const colors = {
+  normal: "#A8A77A",
+  fire: "#EE8130",
+  water: "#6390F0",
+  electric: "#F7D02C",
+  grass: "#7AC74C",
+  ice: "#96D9D6",
+  fighting: "#C22E28",
+  poison: "#A33EA1",
+  ground: "#E2BF65",
+  flying: "#A98FF3",
+  psychic: "#F95587",
+  bug: "#A6B91A",
+  rock: "#B6A136",
+  ghost: "#735797",
+  dragon: "#6F35FC",
+  dark: "#705746",
+  steel: "#B7B7CE",
+  fairy: "#D685AD",
+};
 
 // Infinite scrolling
 const limit = 300; // How many to fetch each time
@@ -64,9 +72,57 @@ function searchBtn(event) {
   console.log("This button works!");
 }
 
-async function displayPokemon(id) {
-  const selectedPokemon = document.querySelector("#selected-pokemon");
+function fetchPokemon() {
+  if (isLoading || hasError) return;
 
+  isLoading = true;
+
+  axios
+    .get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
+    .then((response) => {
+      renderPokemon(response);
+      offset += limit; // move to next page
+      isLoading = false;
+    });
+}
+
+async function getPokemon(response) {
+  const pokemonElement = document.querySelector("#render-pokemon");
+
+  let html = `<div class="pokemon-cards-container">`;
+
+  response.data.results.forEach((pokemon, index) => {
+    const id = index + 1;
+    const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    html += `
+      <div class="select-pokemon-card" data-id="${id}">
+        <img 
+         data-src="${imgSrcPng}"
+         onerror="this.onerror=null; this.src='${imgSrcPng}'"
+        />
+        <div class="select-pokemon-card-content">
+          <h3>${pokemon.name}</h3> 
+        </div>
+      </div>
+      `;
+  });
+
+  pokemonElement.innerHTML = html;
+}
+
+window.addEventListener("scroll", () => {
+  if (isSearching) return; // Prevent infinite scrolling while searching
+  lastScrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const fullHeight = document.documentElement.scrollHeight;
+
+  // If the user is near the bottom
+  if (window.scrollY + windowHeight >= fullHeight - 50) {
+    fetchPokemon();
+  }
+});
+
+async function getAllPokemon(id) {
   const pokemonData = await axios.get(
     `https://pokeapi.co/api/v2/pokemon/${id}`,
   );
@@ -83,37 +139,6 @@ async function displayPokemon(id) {
   const description = englishEntry
     ? englishEntry.flavor_text.replace(/\f/g, " ")
     : "No description available.";
-
-  // checks if the user's device size is less than or equal -> 1100
-  let isMobile = window.innerWidth <= 1100;
-
-  const colors = {
-    normal: "#A8A77A",
-    fire: "#EE8130",
-    water: "#6390F0",
-    electric: "#F7D02C",
-    grass: "#7AC74C",
-    ice: "#96D9D6",
-    fighting: "#C22E28",
-    poison: "#A33EA1",
-    ground: "#E2BF65",
-    flying: "#A98FF3",
-    psychic: "#F95587",
-    bug: "#A6B91A",
-    rock: "#B6A136",
-    ghost: "#735797",
-    dragon: "#6F35FC",
-    dark: "#705746",
-    steel: "#B7B7CE",
-    fairy: "#D685AD",
-  };
-
-  const imgSrcGif = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
-  const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${id}.png`;
-
-  const imgExist = true;
-
-  const existImg = imgExist ? imgSrcGif : imgSrcPng;
 
   let evolutionRes = await axios.get(speciesData.data.evolution_chain.url);
   let evolutionHTML = "";
@@ -139,6 +164,24 @@ async function displayPokemon(id) {
       currentEvolution = null;
     }
   }
+
+  return { data, description, evolutionHTML };
+}
+
+async function displayPokemon(id) {
+  const selectedPokemon = document.querySelector("#selected-pokemon");
+
+  const { data, description, evolutionHTML } = await getAllPokemon(id);
+
+  // checks if the user's device size is less than or equal -> 1100
+  let isMobile = window.innerWidth <= 1100;
+
+  const imgSrcGif = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
+  const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${id}.png`;
+
+  const imgExist = true;
+
+  const existImg = imgExist ? imgSrcGif : imgSrcPng;
 
   selectedPokemon.innerHTML = `
      <div class="display-pokemon">
@@ -198,56 +241,6 @@ async function displayPokemon(id) {
       });
     }
   }
-}
-
-function fetchPokemon() {
-  if (isLoading || hasError) return;
-
-  isLoading = true;
-
-  axios
-    .get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
-    .then((response) => {
-      renderPokemon(response);
-      offset += limit; // move to next page
-      isLoading = false;
-    });
-}
-
-window.addEventListener("scroll", () => {
-  if (isSearching) return; // Prevent infinite scrolling while searching
-  lastScrollTop = window.scrollY;
-  const windowHeight = window.innerHeight;
-  const fullHeight = document.documentElement.scrollHeight;
-
-  // If the user is near the bottom
-  if (window.scrollY + windowHeight >= fullHeight - 50) {
-    fetchPokemon();
-  }
-});
-
-async function getPokemon(response) {
-  const pokemonElement = document.querySelector("#render-pokemon");
-
-  let html = `<div class="pokemon-cards-container">`;
-
-  response.data.results.forEach((pokemon, index) => {
-    const id = index + 1;
-    const imgSrcPng = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-    html += `
-      <div class="select-pokemon-card" data-id="${id}">
-        <img 
-         data-src="${imgSrcPng}"
-         onerror="this.onerror=null; this.src='${imgSrcPng}'"
-        />
-        <div class="select-pokemon-card-content">
-          <h3>${pokemon.name}</h3> 
-        </div>
-      </div>
-      `;
-  });
-
-  pokemonElement.innerHTML = html;
 }
 
 function renderPokemon(response) {
@@ -311,6 +304,11 @@ inputElement.addEventListener("input", filterPokemonByName);
 
 let btnSearch = document.querySelector("#btn-search");
 btnSearch.addEventListener("click", searchBtn);
+
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loading-pikachu");
+  loader.classList.add("hidden");
+});
 
 document
   .querySelector("#render-pokemon")
