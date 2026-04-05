@@ -6,6 +6,7 @@
     <link rel="icon" href="./imgs/poke-ball.png" />
 
     <script>
+      // Saves the user's theme preference in localStorage and applies it on page load
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme === "dark") {
         document.documentElement.classList.add("dark-theme");
