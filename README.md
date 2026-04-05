@@ -1,7 +1,7 @@
 # Overview
 
 Pokédex, a high technical device, designed to record and store data on all species of Pokémon.
-In this web application, the user can search up their favorite Pokémon and observe their abilities, health bars and evolutions!
+In this web application, the user can search for their favorite Pokémon and observe their abilities, health bars and evolutions!
 This website was built with pure HTML, CSS and Vanilla JavaScript for practice and to expand my knowledge in Web Development.
 
 # Features
