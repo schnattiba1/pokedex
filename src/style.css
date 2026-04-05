@@ -20,6 +20,10 @@ html.dark-theme {
   background-color: #2d2d2d;
 }
 
+html.dark-theme #loading-pikachu {
+  background-color: #2d2d2d;
+}
+
 html.theme-transition {
   transition: 0.4s;
 }
@@ -53,6 +57,23 @@ header {
 body::selection {
   background-color: #f54c4c;
   color: white;
+}
+
+#loading-pikachu {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  background-color: white;
+  transition: opacity 2s ease-in-out;
+}
+
+#loading-pikachu.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .img {

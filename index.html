@@ -10,6 +10,8 @@
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme === "dark") {
         document.documentElement.classList.add("dark-theme");
+        document.getElementById("loading-pikachu").style.backgroundColor =
+          "#2d2d2d";
       }
     </script>
 
@@ -23,6 +25,9 @@
     <title>Pokédex</title>
   </head>
   <body>
+    <div id="loading-pikachu">
+      <img src="./imgs/pikachu-pixel-loading.gif" alt="loading.." />
+    </div>
     <header id="header" class="header">
       <img class="img" id="psyduck" src="./imgs/psyduck.png" alt="psyduck" />
       <img id="sound" class="img" src="./imgs/volume-mute.png" alt="volume" />
@@ -49,7 +54,6 @@
         </div>
       </div>
 
-      <!--<img class="loading-pokeball" src="./imgs/pokeball-loading.gif" />-->
       <div class="display-pokemon-container" id="display-pokemon-container">
         <div class="display-pokemon" id="selected-pokemon">
           <img

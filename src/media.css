@@ -132,6 +132,10 @@
   .description-pokemon {
     font-size: 10px;
   }
+
+  .img {
+    height: 30px;
+  }
 }
 
 @media (max-width: 500px) {

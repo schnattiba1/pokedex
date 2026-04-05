@@ -1,3 +1,16 @@
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loading-pikachu");
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    loader.style.backgroundColor = "#2d2d2d";
+  } else {
+    loader.style.backgroundColor = "white";
+  }
+
+  loader.classList.add("hidden");
+});
+
 // Infinite scrolling
 const limit = 300; // How many to fetch each time
 let offset = 0; // Where we are in the list
