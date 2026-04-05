@@ -73,7 +73,7 @@ Dark theme - Mobile
 Displayed pokemon - Mobile
 
 
-<img width="642" alt="Pokédex" src="https://github.com/user-attachments/assets/f8d09c47-bbde-46e8-a63f-28c8d17b1b49" />
+<img width="642" height="325" alt="Pokédex" src="https://github.com/user-attachments/assets/f8d09c47-bbde-46e8-a63f-28c8d17b1b49" />
 
 
 Searching for a pokemon - Mobile
