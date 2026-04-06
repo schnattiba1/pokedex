@@ -6,7 +6,7 @@ This website was built with pure HTML, CSS and Vanilla JavaScript for practice a
 
 # Features
 
-The following features that Pokédex offers:
+Here are the features the Pokédex offers:
 
 - Search for a Pokémon by name
 - View their heights & weights
