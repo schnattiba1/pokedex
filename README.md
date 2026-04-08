@@ -23,7 +23,7 @@ To run this project, you must clone this repository to your local computer by ty
 ``git clone https://github.com/schnattiba1/pokedex.git``
 
 # Usage
-Once this repository has been cloned, you can sucessfully run this project. There are two ways to run this project:
+Once this repository has been cloned, you can successfully run this project. Here are two ways to execute this project:
 
 Option 1:
  - Open your folder 
