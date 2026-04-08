@@ -1,8 +1,8 @@
 # Overview
 
-Pokédex, a high technical device, designed to record and store data on all species of Pokémon.
-In this web application, the user can search for their favorite Pokémon and observe their abilities, health bars and evolutions!
-This website was built with pure HTML, CSS and Vanilla JavaScript for practice and to expand my knowledge in Web Development.
+Pokédex, a high-tech device, is designed to record and store data on all species of Pokémon.
+In this web application, users can search for their favourite Pokémon and observe their abilities, health bars and evolutions!
+This website was built with HTML, CSS and JavaScript for practice and to expand my knowledge in Web Development.
 
 # Features
 
@@ -19,6 +19,7 @@ Here are the features the Pokédex offers:
 
 # Installation
 To run this project, you must clone this repository to your local computer by typing:
+
 ``git clone https://github.com/schnattiba1/pokedex.git``
 
 # Usage
